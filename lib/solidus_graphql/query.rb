@@ -1,5 +1,5 @@
 module Solidus
-  module Graphql
+  module GraphQL
     QueryType = ::GraphQL::ObjectType.define do
       name "Query"
       description "The query root of the schema"

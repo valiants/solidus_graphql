@@ -1,5 +1,5 @@
 module Solidus
-  module Graphql
+  module GraphQL
     Schema = ::GraphQL::Schema.define do
       query QueryType
     end

@@ -1,5 +1,5 @@
 module Solidus
-  module Graphql
+  module GraphQL
     ProductType = ::GraphQL::ObjectType.define do
       name "Product"
 

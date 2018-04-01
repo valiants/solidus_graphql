@@ -1,5 +1,5 @@
 module Solidus
-  module Graphql
+  module GraphQL
     ProductsField = ::GraphQL::Field.define do
       name          "products"
       description   "List of all products"

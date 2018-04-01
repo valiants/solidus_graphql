@@ -5,7 +5,7 @@ require "solidus_graphql/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "solidus_graphql"
-  spec.version       = Solidus::Graphql::VERSION
+  spec.version       = Solidus::GraphQL::VERSION
   spec.authors       = ["Minh Ha"]
   spec.email         = ["minh@valiants.co"]
 

@@ -1,5 +1,5 @@
 module Solidus
-  module Graphql
+  module GraphQL
     VERSION = "0.0.1"
   end
 end
