@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     solidus_graphql (2.5.0)
+      graphql
       solidus_api (= 2.5.0)
       solidus_core (= 2.5.0)
 
@@ -66,6 +67,7 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    graphql (1.7.13)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
