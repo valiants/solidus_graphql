@@ -30,10 +30,6 @@ require "spree/testing_support/factories"
 require "spree/testing_support/preferences"
 require "spree/testing_support/authorization_helpers"
 
-require "spree/api/testing_support/caching"
-require "spree/api/testing_support/helpers"
-require "spree/api/testing_support/setup"
-
 ActiveJob::Base.queue_adapter = :test
 
 RSpec.configure do |config|
@@ -48,10 +44,6 @@ RSpec.configure do |config|
   end
 
   config.include FactoryBot::Syntax::Methods
-  config.include Spree::Api::TestingSupport::Helpers, type: :request
-  config.extend Spree::Api::TestingSupport::Setup, type: :request
-  config.include Spree::Api::TestingSupport::Helpers, type: :controller
-  config.extend Spree::Api::TestingSupport::Setup, type: :controller
   config.include Spree::TestingSupport::Preferences
 
   config.extend WithModel
@@ -59,8 +51,6 @@ RSpec.configure do |config|
   config.before(:each) do
     Rails.cache.clear
     reset_spree_preferences
-    # NOTE: Spree::Api::Config, but probably won't be needed
-    # Spree::Api::Config[:requires_authentication] = true
   end
 
   config.include ActiveJob::TestHelper
