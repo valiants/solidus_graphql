@@ -1,6 +1,4 @@
 require "solidus_graphql/version"
 
-module Solidus
-  module Graphql
-  end
-end
+require "graphql"
+require "solidus_graphql/all"
