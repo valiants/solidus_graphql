@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    solidus_graphql (2.5.0)
+    solidus_graphql (0.0.1)
       graphql (~> 1.7)
-      solidus_core (= 2.5.0)
+      solidus_core (~> 2.5.0)
 
 GEM
   remote: https://rubygems.org/

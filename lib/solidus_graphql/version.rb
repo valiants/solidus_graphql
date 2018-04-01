@@ -1,5 +1,5 @@
 module Solidus
   module Graphql
-    VERSION = "2.5.0"
+    VERSION = "0.0.1"
   end
 end
