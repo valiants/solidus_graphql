@@ -1,15 +1,28 @@
-# SolidusGraphql
+# Solidus::GraphQL
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/solidus_graphql`. To experiment with that code, run `bin/console` for an interactive prompt.
+Supported [solidus](https://github.com/solidusio/solidus) version 2.5.0
 
-TODO: Delete this and the text above, and describe your gem
+## Summary
+This gem is built so that we can build an [Apollo](https://www.apollographql.com/client/) based React storefront. For now it only supports unauthenticated read-only queries. Various core types will be added as the storefront is developed.
+
+## TODO
+* [ ] ProductType
+* [ ] VariantType
+* [ ] ClassificationType
+* [ ] TaxonType
+
+The following features require authorization
+
+* [ ] Authorization
+* [ ] UserType
+* [ ] Order Mutation
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'solidus_graphql'
+gem "solidus_graphql"
 ```
 
 And then execute:
@@ -22,7 +35,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+* Install [graphql](https://github.com/rmosolgo/graphql-ruby) gem then [getting-started](https://github.com/rmosolgo/graphql-ruby#getting-started)
+* Build up the `QueryType` with the types provided by `solidus_graphql`
+
+```ruby
+Types::QueryType = GraphQL::ObjectType.define do
+  name "Query"
+
+  field :products, Solidus::GraphQL::ProductsField
+end
+```
 
 ## Development
 
@@ -36,4 +58,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 
 ## Code of Conduct
 
-Everyone interacting in the SolidusGraphql project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/solidus_graphql/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the SolidusGraphQL project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/solidus_graphql/blob/master/CODE_OF_CONDUCT.md).
