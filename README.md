@@ -3,19 +3,20 @@
 Supported [solidus](https://github.com/solidusio/solidus) version 2.5.0
 
 ## Summary
-This gem is built so that we can build an [Apollo](https://www.apollographql.com/client/) based React storefront. For now it only supports unauthenticated read-only queries. Various core types will be added as the storefront is developed.
+This gem is built so that we can build an [Apollo](https://www.apollographql.com/client/) based React storefront. For now it only supports unauthenticated read-only queries. Various core types will be added as the storefront is developed. I'm not familiar with the internal of solidus yet so any suggestion is very welcomed!
 
 ## TODO
+* [ ] TaxonType
 * [ ] ProductType
 * [ ] VariantType
 * [ ] ClassificationType
-* [ ] TaxonType
 
-The following features require authorization
+The following features require authentication
 
 * [ ] Authorization
 * [ ] UserType
-* [ ] Order Mutation
+* [ ] OrderType
+* [ ] Order Mutations
 
 ## Installation
 
@@ -45,6 +46,16 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :products, Solidus::GraphQL::ProductsField
   field :taxons,   Solidus::GraphQL::TaxonsField
 end
+```
+
+The `current_user` and `current_store` contexts can be injected in `graphql_controller`. If `current_store` is not provided `Solidus::GraphQL::NullStore` will be used instead. `current_user` can be provided but it's not doing anything yet because the queries are not being scoped.
+
+```ruby
+context = {
+  # current_user: current_user,
+  # current_store: get_current_store_somehow,
+}
+result = Schema.execute(query, variables: variables, context: context, operation_name: operation_name)
 ```
 
 ## Development
