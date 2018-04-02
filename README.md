@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/valiants/solidus_graphql.svg?branch=master)](https://travis-ci.org/valiants/solidus_graphql)
+
 # Solidus::GraphQL
 
 Supported [solidus](https://github.com/solidusio/solidus) version 2.5.0
