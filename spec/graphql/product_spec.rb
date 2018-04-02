@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "graphQL product" do
+describe "graphql product" do
   let!(:products) { create_list(:product, 2) }
   let!(:inactive_product) { create(:product, available_on: Time.current.tomorrow, name: "inactive") }
 
