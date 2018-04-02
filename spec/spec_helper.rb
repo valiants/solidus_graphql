@@ -14,6 +14,7 @@ DummyApp.setup(
   gem_root: File.expand_path("..", __dir__),
   lib_name: "solidus_graphql"
 )
+require "pry"
 
 require "rails-controller-testing"
 require "rspec/rails"
