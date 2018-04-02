@@ -6,6 +6,12 @@ module Solidus
       field :id,   types.ID
       field :sku,  types.String
       field :name, types.String
+
+      field :price, types.String do
+        resolve ->(variant, args, ctx) do
+          variant.product.price_for(Pricing.current_options(ctx))
+        end
+      end
     end
   end
 end
