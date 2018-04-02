@@ -6,7 +6,12 @@ module Solidus
       field :id,          types.ID
       field :name,        types.String
       field :description, types.String
+      field :master,      VariantType
       field :slug,        types.String
+
+      connection :variants, VariantType.connection_type do
+        resolve VariantResolver::ByProduct
+      end
     end
   end
 end
