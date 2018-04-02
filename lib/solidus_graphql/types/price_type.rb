@@ -1,16 +1,24 @@
 module Solidus
   module GraphQL
     PriceType = ::GraphQL::ObjectType.define do
-      name "Taxon"
+      name "Price"
 
-      field :id,          types.ID
-      field :name,        types.String
-      field :permalink,   types.String
-      field :pretty_name, types.String
-      field :seo_title,   types.String
+      field :amount, types.Float do
+        resolve ->(price, args, ctx) do
+          price.money.fractional.to_f / price.money.currency.subunit_to_unit
+        end
+      end
 
-      connection :products, ProductType.connection_type do
-        resolve ProductResolver::ByTaxon
+      field :subunit_amount, types.Int do
+        resolve ->(price, args, ctx) do
+          price.money.fractional
+        end
+      end
+
+      field :currency, CurrencyType do
+        resolve ->(price, args, ctx) do
+          price.money.currency
+        end
       end
     end
   end

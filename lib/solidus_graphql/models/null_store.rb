@@ -2,7 +2,7 @@ module Solidus
   module GraphQL
     class NullStore
       def default_currency
-        "USD"
+        Spree::Config[:currency] || "USD"
       end
 
       def cart_tax_country_iso

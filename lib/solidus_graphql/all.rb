@@ -14,3 +14,4 @@ require_relative "types/variant_type"
 require_relative "resolvers/variant_resolver"
 
 require_relative "types/price_type"
+require_relative "types/currency_type"
