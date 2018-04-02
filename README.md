@@ -35,14 +35,15 @@ Or install it yourself as:
 
 ## Usage
 
-* Install [graphql](https://github.com/rmosolgo/graphql-ruby) gem then [getting-started](https://github.com/rmosolgo/graphql-ruby#getting-started)
-* Build up the `QueryType` with the types provided by `solidus_graphql`
+* Install the [graphql](https://github.com/rmosolgo/graphql-ruby) gem then [getting-started](https://github.com/rmosolgo/graphql-ruby#getting-started)
+* Build up `QueryType` with the types provided by `solidus_graphql`
 
 ```ruby
 Types::QueryType = GraphQL::ObjectType.define do
   name "Query"
 
   field :products, Solidus::GraphQL::ProductsField
+  field :taxons,   Solidus::GraphQL::TaxonsField
 end
 ```
 
