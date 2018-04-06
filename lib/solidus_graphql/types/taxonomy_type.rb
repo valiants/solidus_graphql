@@ -12,6 +12,10 @@ module Solidus
           taxonomy.root
         end
       end
+
+      connection :taxons, TaxonType.connection_type do
+        resolve TaxonResolver::ByTaxonomy
+      end
     end
   end
 end
