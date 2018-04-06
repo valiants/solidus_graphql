@@ -4,8 +4,9 @@ module Solidus
       name "Query"
       description "The query root of the schema"
 
-      field :products, ProductsField
-      field :taxons,   TaxonsField
+      field :products,   ProductsField
+      field :taxons,     TaxonsField
+      field :taxonomies, TaxonomiesField
     end
   end
 end

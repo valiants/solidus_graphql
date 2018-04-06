@@ -2,6 +2,10 @@ require_relative "models/null_store"
 require_relative "helpers/pricing"
 
 # TODO: multiple files
+require_relative "types/taxonomy_type"
+require_relative "fields/taxonomies_field"
+require_relative "resolvers/taxonomy_resolver"
+
 require_relative "types/taxon_type"
 require_relative "fields/taxons_field"
 require_relative "resolvers/taxon_resolver"
