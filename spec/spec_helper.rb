@@ -1,66 +1,33 @@
 # frozen_string_literal: true
 
 if ENV["COVERAGE"]
-  require "simplecov"
-  SimpleCov.start("rails")
+  require 'simplecov'
+  SimpleCov.start 'rails'
 end
 
-# This file is copied to spec/ when you run "rails generate rspec:install"
-ENV["RAILS_ENV"] ||= "test"
+ENV["RAILS_ENV"] = "test"
 
-require "solidus_graphql"
-require "spree/testing_support/dummy_app"
-DummyApp.setup(
-  gem_root: File.expand_path("..", __dir__),
-  lib_name: "solidus_graphql"
-)
-require "pry"
+require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 
-require "rails-controller-testing"
-require "rspec/rails"
-require "rspec-activemodel-mocks"
+require 'rspec/rails'
+require 'ffaker'
+require 'database_cleaner'
 
-require "database_cleaner"
-require "with_model"
+Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f }
 
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in spec/support/ and its subdirectories.
-Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each { |f| require f }
-
-require "spree/testing_support/factories"
-require "spree/testing_support/preferences"
-require "spree/testing_support/authorization_helpers"
-
-ActiveJob::Base.queue_adapter = :test
+require 'spree/testing_support/factories'
+require 'spree/testing_support/preferences'
 
 RSpec.configure do |config|
-  config.backtrace_exclusion_patterns = [/gems\/activesupport/, /gems\/actionpack/, /gems\/rspec/]
-  config.color = true
-  config.infer_spec_type_from_file_location!
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
-  end
-  config.mock_with :rspec do |c|
-    c.syntax = :expect
-  end
+  config.mock_with :rspec
+  config.use_transactional_fixtures = false
 
-  config.include FactoryBot::Syntax::Methods
-  config.include Spree::TestingSupport::Preferences
-
-  config.extend WithModel
-
-  config.before(:each) do
+  config.prepend_before(:each) do
     Rails.cache.clear
     reset_spree_preferences
   end
 
-  config.include ActiveJob::TestHelper
-
-  config.use_transactional_fixtures = true
-
+  config.include FactoryBot::Syntax::Methods
+  config.include Spree::TestingSupport::Preferences
   config.example_status_persistence_file_path = "./spec/examples.txt"
-
-  config.order = :random
-
-  Kernel.srand config.seed
 end
