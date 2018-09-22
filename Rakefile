@@ -1,17 +1,21 @@
-# frozen_string_literal: true
+require 'bundler'
+Bundler::GemHelper.install_tasks
 
-require "rubygems"
-require "rake"
-require "rake/testtask"
-require "rspec/core/rake_task"
-require "spree/testing_support/dummy_app/rake_tasks"
+require 'rspec/core/rake_task'
+require 'spree/testing_support/common_rake'
 
 RSpec::Core::RakeTask.new
-task default: :spec
 
-DummyApp::RakeTasks.new(
-  gem_root: File.expand_path(__dir__),
-  lib_name: "solidus_graphql"
-)
+task :default do
+  if Dir["spec/dummy"].empty?
+    Rake::Task[:test_app].invoke
+    Dir.chdir("../../")
+  end
+  Rake::Task[:spec].invoke
+end
 
-task test_app: "db:reset"
+desc 'Generates a dummy app for testing'
+task :test_app do
+  ENV['LIB_NAME'] = 'solidus_graphql'
+  Rake::Task['common:test_app'].invoke("Spree::User")
+end

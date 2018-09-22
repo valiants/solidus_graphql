@@ -1,15 +1,26 @@
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
+gem "solidus", github: "solidusio/solidus", branch: branch
+gem 'solidus_auth_devise'
+gem 'deface'
 
-gem "sqlite3", require: false
-gem "database_cleaner", "~> 1.3", require: false
-gem "factory_bot_rails", "~> 4.8", require: false
-gem "rspec-activemodel-mocks", "~>1.0.2", require: false
-gem "rspec-rails", "~> 3.7", require: false
-gem "simplecov", require: false
-gem "with_model", require: false
-gem "rails-controller-testing", require: false
+if branch == 'master' || branch >= "v2.3"
+  gem 'rails', '~> 5.1.0' # hack for broken bundler dependency resolution
+  gem 'rails-controller-testing', group: :test
+elsif branch >= "v2.0"
+  gem 'rails', '~> 5.0.0' # hack for broken bundler dependency resolution
+  gem 'rails-controller-testing', group: :test
+else
+  gem "rails", "~> 4.2.7"
+  gem "rails_test_params_backport", group: :test
+end
 
-# Specify your gem's dependencies in solidus_graphql.gemspec
+gem 'pg', '~> 0.21'
+gem 'mysql2', '~> 0.4.10'
+
+group :development, :test do
+  gem "pry-rails"
+end
+
 gemspec
